@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to EPIC — Client Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFAF8;--bg2:#F3F2EE;--card:#FFF;--ink:#1A1E2C;--text:#3D4355;--dim:#7C8295;--mute:#B0B5C3;--line:#E5E4DF;--line2:#D4D3CD;--blue:#2563EB;--blue-l:#3B82F6;--blue-bg:#EFF6FF;--green:#059669;--green-l:#10B981;--green-bg:#ECFDF5;--amber:#D97706;--amber-bg:#FFFBEB;--purple:#7C3AED;--purple-bg:#F5F3FF;--cyan:#0891B2;--cyan-bg:#ECFEFF;--warm:#92400E;--r:16px;--sh:0 1px 3px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04);--sh2:0 4px 24px rgba(0,0,0,.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.fu{animation:fadeUp .5s ease both}.fd1{animation-delay:.1s}.fd2{animation-delay:.2s}.fd3{animation-delay:.3s}.fd4{animation-delay:.4s}.fd5{animation-delay:.5s}
+
+.hero{background:#0C1425;color:#fff;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-20%;width:140%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(37,99,235,.12),transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(124,58,237,.08),transparent 50%)}
+.hero-in{max-width:660px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:.3rem .9rem;font-size:.72rem;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:1rem}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:#10B981;animation:pulse 2s infinite}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(1.7rem,5vw,2.6rem);font-weight:700;letter-spacing:-.5px;line-height:1.2;margin-bottom:.6rem}
+.hero h1 span{color:var(--blue-l)}
+.hero p{color:rgba(255,255,255,.55);font-size:.95rem;max-width:500px;margin:0 auto;font-weight:300}
+
+.pbar{background:var(--card);border-bottom:1px solid var(--line);padding:1.1rem 1.5rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.03)}
+.pbar-in{max-width:860px;margin:0 auto}
+.psteps{display:flex;justify-content:space-between;position:relative}
+.psteps::before{content:'';position:absolute;top:14px;left:28px;right:28px;height:2px;background:var(--line)}
+.psteps .fill{position:absolute;top:14px;left:28px;height:2px;background:linear-gradient(90deg,var(--blue),var(--green));transition:width .5s;border-radius:2px}
+.ps{display:flex;flex-direction:column;align-items:center;gap:.3rem;position:relative;z-index:1;cursor:pointer}
+.ps-d{width:30px;height:30px;border-radius:50%;background:var(--card);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:var(--mute);transition:all .3s}
+.ps.on .ps-d{border-color:var(--blue);background:var(--blue);color:#fff;box-shadow:0 0 0 4px rgba(37,99,235,.12)}
+.ps.ok .ps-d{border-color:var(--green);background:var(--green);color:#fff}
+.ps-l{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--mute);transition:color .3s}
+.ps.on .ps-l{color:var(--blue)}.ps.ok .ps-l{color:var(--green)}
+
+.wrap{max-width:860px;margin:0 auto;padding:1.75rem 2rem 3.5rem}
+.stp{display:none}.stp.vis{display:block}
+.shdr{margin-bottom:1.75rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+.shdr .tag{display:inline-block;padding:.18rem .6rem;border-radius:6px;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem}
+.shdr h2{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--ink);letter-spacing:-.3px;margin-bottom:.3rem}
+.shdr p{color:var(--dim);font-size:.88rem}
+
+.oc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.4rem;margin-bottom:1.1rem;box-shadow:var(--sh);transition:box-shadow .3s,border-color .3s}
+.oc:hover{box-shadow:var(--sh2);border-color:var(--line2)}
+.oc h3{font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:.45rem;display:flex;align-items:center;gap:.45rem}
+.oc p{font-size:.85rem;color:var(--text)}
+
+.hgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin:1.25rem 0}
+.hc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.3rem 1.1rem;text-align:center;box-shadow:var(--sh);position:relative;transition:transform .3s,box-shadow .3s}
+.hc:hover{transform:translateY(-3px);box-shadow:var(--sh2)}
+.hc .hn{position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;color:#fff}
+.hc .he{font-size:2.2rem;margin:.75rem 0 .5rem}
+.hc h4{font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.25rem}
+.hc p{font-size:.75rem;color:var(--dim);line-height:1.5}
+
+.ex{display:grid;grid-template-columns:68px 1fr;gap:1rem;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.3rem;margin-bottom:.85rem;box-shadow:var(--sh)}
+.ex-i{width:64px;height:64px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.ex h4{font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.25rem}
+.ex p{font-size:.8rem;color:var(--dim)}
+
+.tl{margin:1.25rem 0;padding-left:24px;border-left:2px solid var(--line)}
+.tli{position:relative;padding:0 0 1.25rem 1.25rem}
+.tli:last-child{padding-bottom:0}
+.tli-d{position:absolute;left:-31px;top:2px;width:14px;height:14px;border-radius:50%;border:2.5px solid}
+.tli h4{font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.1rem}
+.tli p{font-size:.78rem;color:var(--dim)}
+.tli .tw{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.2rem}
+
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.ff{grid-column:1/-1}
+.fgi{display:flex;flex-direction:column;gap:.25rem}
+.fgi label{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--dim)}
+.fgi input,.fgi select,.fgi textarea{font-family:'Outfit',sans-serif;font-size:.85rem;padding:.65rem .8rem;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);transition:border-color .2s,box-shadow .2s;outline:none}
+.fgi input:focus,.fgi select:focus,.fgi textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.fgi textarea{min-height:90px;resize:vertical}
+.fgi input::placeholder{color:var(--mute)}
+
+.br{display:flex;gap:.65rem;margin-top:1.25rem;justify-content:flex-end}
+.btn{font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;padding:.65rem 1.3rem;border:none;border-radius:10px;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:.35rem}
+.bp{background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.25)}
+.bp:hover{background:#1D4ED8;transform:translateY(-1px);box-shadow:0 4px 16px rgba(37,99,235,.3)}
+.bs{background:transparent;color:var(--text);border:1.5px solid var(--line)}
+.bs:hover{border-color:var(--line2);background:var(--bg2)}
+.bg{background:var(--green);color:#fff;box-shadow:0 2px 8px rgba(5,150,105,.25)}
+.bg:hover{background:#047857}
+
+.cbox{background:linear-gradient(135deg,#FEFCE8,#FFF7ED);border:1.5px solid #FDE68A;border-radius:var(--r);padding:1.3rem;margin-bottom:1.25rem}
+.cbox h3{font-size:.95rem;font-weight:700;color:var(--warm);margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
+.cbox p{font-size:.82rem;color:#92400E;margin-bottom:.6rem}
+.cbox .dl{display:inline-flex;align-items:center;gap:.35rem;padding:.45rem .85rem;background:var(--card);border:1.5px solid #FDE68A;border-radius:8px;font-size:.8rem;font-weight:600;color:var(--warm);text-decoration:none;transition:all .2s}
+.cbox .dl:hover{background:#FFFBEB;border-color:#F59E0B;transform:translateY(-1px);text-decoration:none}
+
+.sa{background:var(--card);border:1.5px dashed var(--line2);border-radius:12px;padding:1.15rem;text-align:center;margin-top:.85rem}
+.sa p{font-size:.8rem;color:var(--dim);margin-bottom:.6rem}
+
+.cli{display:flex;align-items:flex-start;gap:.65rem;padding:.75rem .85rem;background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:.5rem;cursor:pointer;transition:border-color .2s}
+.cli:hover{border-color:var(--green-l)}
+.clc{width:20px;height:20px;border:2px solid var(--line2);border-radius:5px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:.65rem;transition:all .2s;color:transparent}
+.cli.ck .clc{border-color:var(--green);background:var(--green);color:#fff}
+.cli.ck{border-color:var(--green-l);background:var(--green-bg)}
+.clt{font-size:.82rem}.clt strong{color:var(--ink)}
+
+.sopts{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin:1.25rem 0}
+.sc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.3rem;text-align:center;box-shadow:var(--sh);transition:transform .3s,box-shadow .3s}
+.sc:hover{transform:translateY(-3px);box-shadow:var(--sh2)}
+.sc .si{font-size:1.8rem;margin-bottom:.6rem}
+.sc h4{font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+.sc p{font-size:.75rem;color:var(--dim)}
+.sc a{color:var(--blue);font-weight:600;font-size:.8rem;text-decoration:none}
+.sc a:hover{text-decoration:underline}
+
+.suc{text-align:center;padding:2.5rem 1.5rem;background:linear-gradient(135deg,var(--green-bg),var(--cyan-bg));border:1.5px solid #6EE7B7;border-radius:var(--r)}
+.suc .be{font-size:3.5rem;margin-bottom:.75rem}
+.suc h2{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--ink);margin-bottom:.4rem}
+.suc p{color:var(--dim);max-width:480px;margin:0 auto;font-size:.88rem}
+
+.foot{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--mute);border-top:1px solid var(--line)}
+
+@media(max-width:768px){.hero{padding:2.25rem 1.1rem 1.75rem}.wrap{padding:1.25rem 1.1rem 2.5rem}.pbar{padding:.8rem .85rem}.ps-l{font-size:.52rem}.ps-d{width:24px;height:24px;font-size:.6rem}.fg{grid-template-columns:1fr}.hgrid{grid-template-columns:1fr}.sopts{grid-template-columns:1fr}.ex{grid-template-columns:52px 1fr;gap:.65rem}.ex-i{width:48px;height:48px;font-size:1.4rem}.br{flex-direction:column}.btn{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<div class="hero-in fu">
+<div class="hero-badge"><span class="dot"></span> Your onboarding is in progress</div>
+<h1>Welcome to <span>EPIC</span></h1>
+<p>This portal walks you through everything we need to get your AI-powered automation live and working for your business.</p>
+</div>
+</div>
+
+<div class="pbar">
+<div class="pbar-in">
+<div class="psteps">
+<div class="fill" id="barFill" style="width:0%"></div>
+<div class="ps on" data-s="0" onclick="go(0)"><div class="ps-d">1</div><div class="ps-l">How It Works</div></div>
+<div class="ps" data-s="1" onclick="go(1)"><div class="ps-d">2</div><div class="ps-l">Your Details</div></div>
+<div class="ps" data-s="2" onclick="go(2)"><div class="ps-d">3</div><div class="ps-l">Agreement</div></div>
+<div class="ps" data-s="3" onclick="go(3)"><div class="ps-d">4</div><div class="ps-l">Go-Live</div></div>
+<div class="ps" data-s="4" onclick="go(4)"><div class="ps-d">5</div><div class="ps-l">Support</div></div>
+</div>
+</div>
+</div>
+
+<div class="wrap">
+
+<!-- STEP 0 -->
+<div class="stp vis" id="s0">
+<div class="shdr fu"><div class="tag" style="background:var(--blue-bg);color:var(--blue)">Step 1 of 5</div><h2>Here's How It All Works</h2><p>In simple terms — we're giving your business a 24/7 AI receptionist, automated follow-ups, and a marketing engine.</p></div>
+
+<div class="hgrid fu fd1">
+<div class="hc"><div class="hn" style="background:var(--blue)">1</div><div class="he">📞</div><h4>AI Answers Your Calls</h4><p>A professional AI agent answers every call — 24/7, nights, weekends, holidays. It sounds natural and knows your services.</p></div>
+<div class="hc"><div class="hn" style="background:var(--purple)">2</div><div class="he">📅</div><h4>Books Appointments</h4><p>The AI qualifies callers, captures their info, and books them directly into your calendar. You wake up to booked jobs.</p></div>
+<div class="hc"><div class="hn" style="background:var(--green)">3</div><div class="he">🔁</div><h4>Automated Follow-Up</h4><p>Missed a call? Auto text-back. Gave an estimate? Auto follow-up. Nurture campaigns keep you top-of-mind.</p></div>
+</div>
+
+<div class="ex fu fd2"><div class="ex-i" style="background:var(--blue-bg)">🤖</div><div><h4>Your AI Voice Agent</h4><p>A natural-sounding voice assistant trained on <em>your</em> business — your services, pricing, hours, and service area. Handles inbound calls, qualifies leads, answers FAQs, and routes emergencies. Callers won't know it's AI.</p></div></div>
+
+<div class="ex fu fd3"><div class="ex-i" style="background:var(--purple-bg)">💬</div><div><h4>Website Chat & SMS</h4><p>An intelligent chatbot on your website plus text messaging that handles inquiries, captures leads, and books appointments automatically. Same knowledge base as the voice agent — consistent professionalism everywhere.</p></div></div>
+
+<div class="ex fu fd4"><div class="ex-i" style="background:var(--green-bg)">📊</div><div><h4>Your Dashboard & Reports</h4><p>See calls answered, appointments booked, follow-ups sent, conversion rates. Weekly reports emailed to you. Monthly review calls with your dedicated account manager.</p></div></div>
+
+<div class="ex fu fd5"><div class="ex-i" style="background:var(--amber-bg)">⚡</div><div><h4>We Handle Everything</h4><p>Setup, configuration, testing, launch, optimization — all done for you. Your job? Keep doing what you do best. We handle the tech and make sure no lead falls through the cracks.</p></div></div>
+
+<div class="oc fu fd5"><h3>⏱️ Your Onboarding Timeline</h3>
+<div class="tl" style="margin-top:.75rem">
+<div class="tli"><div class="tli-d" style="border-color:var(--blue);background:var(--blue-bg)"></div><div class="tw" style="color:var(--blue)">Day 1 — Today</div><h4>Complete This Portal</h4><p>Fill out your business details, review the agreement, and we begin building immediately.</p></div>
+<div class="tli"><div class="tli-d" style="border-color:var(--purple);background:var(--purple-bg)"></div><div class="tw" style="color:var(--purple)">Day 1–2</div><h4>We Build Your System</h4><p>We configure your AI agent, chatbot, automations, phone number, and connect your calendar.</p></div>
+<div class="tli"><div class="tli-d" style="border-color:var(--amber);background:var(--amber-bg)"></div><div class="tw" style="color:var(--amber)">Day 2–3</div><h4>You Review & Approve</h4><p>We send you test calls and chat previews. You tell us what to tweak. We refine until it's perfect.</p></div>
+<div class="tli"><div class="tli-d" style="border-color:var(--green);background:var(--green-bg)"></div><div class="tw" style="color:var(--green)">Day 3–5</div><h4>Go Live 🚀</h4><p>Your AI starts answering calls, booking jobs, and following up — while you focus on your business.</p></div>
+</div>
+</div>
+
+<div class="br"><button class="btn bp" onclick="go(1)">Got it — Let's get started →</button></div>
+</div>
+
+<!-- STEP 1 -->
+<div class="stp" id="s1">
+<div class="shdr fu"><div class="tag" style="background:var(--purple-bg);color:var(--purple)">Step 2 of 5</div><h2>Tell Us About Your Business</h2><p>Everything we need to train your AI agent and configure your automations. The more detail, the better it performs from day one.</p></div>
+
+<div class="oc fu fd1"><h3>👤 Primary Contact</h3>
+<div class="fg" style="margin-top:.6rem">
+<div class="fgi"><label>Full Name *</label><input placeholder="John Smith"></div>
+<div class="fgi"><label>Email *</label><input type="email" placeholder="john@mybusiness.com"></div>
+<div class="fgi"><label>Phone *</label><input type="tel" placeholder="(555) 123-4567"></div>
+<div class="fgi"><label>Role</label><input placeholder="Owner, Manager, etc."></div>
+</div></div>
+
+<div class="oc fu fd2"><h3>🏢 Business Information</h3>
+<div class="fg" style="margin-top:.6rem">
+<div class="fgi"><label>Business Name *</label><input placeholder="Smith's Plumbing LLC"></div>
+<div class="fgi"><label>Industry / Trade *</label><select><option value="">Select your industry...</option><option>Plumbing</option><option>HVAC</option><option>Roofing</option><option>Electrical</option><option>General Contractor</option><option>Landscaping</option><option>Legal / Law Firm</option><option>Dental</option><option>Other</option></select></div>
+<div class="fgi"><label>Website</label><input placeholder="https://www.mybusiness.com"></div>
+<div class="fgi"><label>Years in Business</label><input placeholder="e.g. 5 years"></div>
+<div class="fgi"><label>Employees</label><input placeholder="e.g. 4"></div>
+<div class="fgi"><label>Service Area</label><input placeholder="e.g. St. Louis metro, 50 mile radius"></div>
+<div class="fgi ff"><label>Business Address</label><input placeholder="123 Main St, Fenton, MO 63026"></div>
+</div></div>
+
+<div class="oc fu fd3"><h3>🔧 Your Services & Pricing</h3><p style="margin-bottom:.6rem">Help us train your AI — what should it know about your work?</p>
+<div class="fg">
+<div class="fgi ff"><label>Services You Offer *</label><textarea placeholder="e.g. Emergency plumbing, drain cleaning, water heater repair/install, leak detection, sewer line repair, bathroom remodels..."></textarea></div>
+<div class="fgi"><label>Average Job Value</label><input placeholder="e.g. $250"></div>
+<div class="fgi"><label>Free Estimates?</label><select><option>Yes</option><option>No</option><option>Depends on the job</option></select></div>
+<div class="fgi ff"><label>Pricing Info for AI</label><textarea placeholder="e.g. 'Service calls start at $89. Free estimates for jobs over $500. Emergency dispatch fee is $149.'"></textarea></div>
+</div></div>
+
+<div class="oc fu fd4"><h3>🕐 Availability & Operations</h3>
+<div class="fg">
+<div class="fgi"><label>Business Hours *</label><input placeholder="e.g. Mon-Fri 7am-6pm, Sat 8am-2pm"></div>
+<div class="fgi"><label>Emergency / After-Hours?</label><select><option>Yes — 24/7 emergency</option><option>Yes — limited</option><option>No — business hours only</option></select></div>
+<div class="fgi ff"><label>Current Scheduling Tool</label><input placeholder="e.g. ServiceTitan, Housecall Pro, Jobber, Google Calendar, none..."></div>
+<div class="fgi ff"><label>Anything else the AI should know?</label><textarea placeholder="e.g. 'We don't do gas lines. Ask if they have a dog. Credit card required for jobs over $500.'"></textarea></div>
+</div></div>
+
+<div class="oc fu fd5"><h3>📱 Current Phone Setup</h3>
+<div class="fg">
+<div class="fgi"><label>Main Business Phone *</label><input type="tel" placeholder="(555) 123-4567"></div>
+<div class="fgi"><label>Keep this number?</label><select><option>Yes — port it over</option><option>No — give me a new one</option><option>Not sure — let's discuss</option></select></div>
+<div class="fgi ff"><label>Current Phone Provider</label><input placeholder="e.g. Verizon, AT&T, Google Voice..."></div>
+</div></div>
+
+<div class="br"><button class="btn bs" onclick="go(0)">← Back</button><button class="btn bp" onclick="go(2)">Save & Continue →</button></div>
+</div>
+
+<!-- STEP 2: AGREEMENT -->
+<div class="stp" id="s2">
+<div class="shdr fu"><div class="tag" style="background:var(--amber-bg);color:var(--amber)">Step 3 of 5</div><h2>Review & Sign Your Agreement</h2><p>Your Master Services Agreement covers scope, pricing, data protection, and your rights. Take a moment to review the key terms.</p></div>
+
+<div class="cbox fu fd1">
+<h3>📜 Master Services Agreement</h3>
+<p>This agreement covers all services EPIC provides — AI voice agents, chatbots, automations, reporting, and ongoing optimization.</p>
+<a class="dl" href="https://docs.google.com/document/d/1DXFsP_l6ooMdhtt8pZlS7mD2p9_x408VJ1wzBGLBqP4/edit" target="_blank">📄 Open Full MSA in Google Docs ↗</a>
+</div>
+
+<div class="oc fu fd2"><h3>📋 Key Terms — Plain English</h3>
+<div style="display:grid;gap:.55rem;margin-top:.4rem">
+<div style="display:flex;gap:.45rem;align-items:flex-start"><span style="color:var(--blue);font-weight:700;flex-shrink:0;font-size:.82rem">§5</span><span style="font-size:.82rem"><strong>Billing:</strong> Monthly subscription via Stripe. Your rate is in Schedule A. Billed at the start of each month.</span></div>
+<div style="display:flex;gap:.45rem;align-items:flex-start"><span style="color:var(--green);font-weight:700;flex-shrink:0;font-size:.82rem">§7</span><span style="font-size:.82rem"><strong>Term:</strong> Month-to-month. Cancel anytime with 30 days notice. No long-term lock-in.</span></div>
+<div style="display:flex;gap:.45rem;align-items:flex-start"><span style="color:var(--purple);font-weight:700;flex-shrink:0;font-size:.82rem">§8</span><span style="font-size:.82rem"><strong>Your Data:</strong> You own all your customer data. Always. We export everything to you upon termination.</span></div>
+<div style="display:flex;gap:.45rem;align-items:flex-start"><span style="color:var(--amber);font-weight:700;flex-shrink:0;font-size:.82rem">§6</span><span style="font-size:.82rem"><strong>Free Trial:</strong> If applicable per Schedule A. Cancel anytime during trial — no charge.</span></div>
+<div style="display:flex;gap:.45rem;align-items:flex-start"><span style="color:var(--cyan);font-weight:700;flex-shrink:0;font-size:.82rem">DPA</span><span style="font-size:.82rem"><strong>Privacy:</strong> Data processed only to deliver services. Encrypted, access-controlled, breach notification included.</span></div>
+<div style="display:flex;gap:.45rem;align-items:flex-start"><span style="color:#DC2626;font-weight:700;flex-shrink:0;font-size:.82rem">§10</span><span style="font-size:.82rem"><strong>AI Transparency:</strong> AI may occasionally misinterpret callers. We optimize continuously but don't guarantee specific booking rates.</span></div>
+</div></div>
+
+<div class="oc fu fd3"><h3>📎 What's Included</h3>
+<p style="margin-bottom:.4rem;font-size:.82rem">Based on your industry, the relevant addendum is automatically attached to your MSA:</p>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:.5rem">
+<div style="background:var(--blue-bg);border-radius:10px;padding:.65rem;text-align:center;font-size:.8rem"><strong>🔧 Plumbing</strong><br><span style="font-size:.7rem;color:var(--dim)">Emergency, leak, drain, heater</span></div>
+<div style="background:var(--amber-bg);border-radius:10px;padding:.65rem;text-align:center;font-size:.8rem"><strong>🏠 Roofing</strong><br><span style="font-size:.7rem;color:var(--dim)">Storm, insurance, inspection</span></div>
+<div style="background:var(--cyan-bg);border-radius:10px;padding:.65rem;text-align:center;font-size:.8rem"><strong>❄️ HVAC</strong><br><span style="font-size:.7rem;color:var(--dim)">AC, heating, maintenance</span></div>
+</div></div>
+
+<div class="sa fu fd4">
+<p>By clicking below, you confirm you've reviewed the MSA, Schedule A, and DPA, and agree to the terms.</p>
+<div class="fg" style="max-width:460px;margin:0 auto">
+<div class="fgi"><label>Your Full Legal Name *</label><input placeholder="As it should appear on the contract"></div>
+<div class="fgi"><label>Date</label><input type="date"></div>
+</div>
+<div class="br" style="justify-content:center;margin-top:.85rem">
+<button class="btn bg" onclick="go(3)" style="font-size:.9rem;padding:.75rem 2.2rem">✓ I Agree & Sign</button>
+</div>
+</div>
+
+<div class="br"><button class="btn bs" onclick="go(1)">← Back</button></div>
+</div>
+
+<!-- STEP 3: GO-LIVE -->
+<div class="stp" id="s3">
+<div class="shdr fu"><div class="tag" style="background:var(--green-bg);color:var(--green)">Step 4 of 5</div><h2>Go-Live Preparation</h2><p>Here's exactly what happens between now and launch day. We handle the heavy lifting — you just review and approve.</p></div>
+
+<div class="oc fu fd1"><h3>🔧 What We're Building For You</h3>
+<div class="tl" style="margin-top:.75rem">
+<div class="tli"><div class="tli-d" style="border-color:var(--blue);background:var(--blue-bg)"></div><div class="tw" style="color:var(--blue)">Immediately</div><h4>Sub-Account Created</h4><p>Your dedicated account in our platform is created instantly using our pre-built system template. All workflows, automations, and AI configurations are loaded automatically.</p></div>
+<div class="tli"><div class="tli-d" style="border-color:var(--purple);background:var(--purple-bg)"></div><div class="tw" style="color:var(--purple)">Day 1</div><h4>AI Agent Trained on Your Business</h4><p>We load your services, pricing, hours, and FAQs into the AI knowledge base. Your voice agent will know your business inside and out.</p></div>
+<div class="tli"><div class="tli-d" style="border-color:var(--cyan);background:var(--cyan-bg)"></div><div class="tw" style="color:var(--cyan)">Day 1–2</div><h4>Phone & Automations Configured</h4><p>Your phone number is set up, call routing configured, missed-call text-back activated, follow-up sequences loaded, and booking calendar connected.</p></div>
+<div class="tli"><div class="tli-d" style="border-color:var(--amber);background:var(--amber-bg)"></div><div class="tw" style="color:var(--amber)">Day 2–3</div><h4>Testing & Your Approval</h4><p>We run 5+ test calls covering every scenario. You'll receive test calls too. You review, request changes, and give final approval before we go live.</p></div>
+<div class="tli"><div class="tli-d" style="border-color:var(--green);background:var(--green-bg)"></div><div class="tw" style="color:var(--green)">Day 3–5</div><h4>Launch 🚀</h4><p>Phone number goes live. AI starts answering. Automations activate. We monitor closely for the first 48 hours and fine-tune in real-time.</p></div>
+</div></div>
+
+<div class="oc fu fd2"><h3>✅ Your Go-Live Checklist</h3><p style="font-size:.82rem;color:var(--dim);margin-bottom:.6rem">Click each item as you confirm it's handled. We'll take care of the rest.</p>
+<div id="checklist">
+<div class="cli" onclick="this.classList.toggle('ck')"><div class="clc">✓</div><div class="clt"><strong>Agreement signed</strong> — MSA, Schedule A, DPA reviewed and accepted</div></div>
+<div class="cli" onclick="this.classList.toggle('ck')"><div class="clc">✓</div><div class="clt"><strong>Payment method on file</strong> — Stripe billing set up</div></div>
+<div class="cli" onclick="this.classList.toggle('ck')"><div class="clc">✓</div><div class="clt"><strong>Business info submitted</strong> — name, services, hours, pricing shared above</div></div>
+<div class="cli" onclick="this.classList.toggle('ck')"><div class="clc">✓</div><div class="clt"><strong>Phone number decision</strong> — port existing or get new number</div></div>
+<div class="cli" onclick="this.classList.toggle('ck')"><div class="clc">✓</div><div class="clt"><strong>Calendar/CRM access</strong> — shared login or integration credentials</div></div>
+<div class="cli" onclick="this.classList.toggle('ck')"><div class="clc">✓</div><div class="clt"><strong>Review AI scripts</strong> — we'll send you a preview before go-live</div></div>
+<div class="cli" onclick="this.classList.toggle('ck')"><div class="clc">✓</div><div class="clt"><strong>Test calls completed</strong> — you've tested the AI and approved</div></div>
+<div class="cli" onclick="this.classList.toggle('ck')"><div class="clc">✓</div><div class="clt"><strong>Go-live confirmed</strong> — you're ready for your AI to start taking calls</div></div>
+</div></div>
+
+<div class="oc fu fd3"><h3>🎯 What Happens After Launch</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.5rem">
+<div style="background:var(--blue-bg);border-radius:10px;padding:.85rem;font-size:.8rem"><strong>📧 Weekly Reports</strong><br>Every Monday — calls handled, appointments booked, texts sent, conversion rates.</div>
+<div style="background:var(--purple-bg);border-radius:10px;padding:.85rem;font-size:.8rem"><strong>📞 Monthly Review</strong><br>30-minute call with your account manager to review performance and plan next steps.</div>
+<div style="background:var(--green-bg);border-radius:10px;padding:.85rem;font-size:.8rem"><strong>🔄 Ongoing Optimization</strong><br>We refine AI prompts, update your knowledge base, and improve automation flows quarterly.</div>
+<div style="background:var(--amber-bg);border-radius:10px;padding:.85rem;font-size:.8rem"><strong>📈 Growth Opportunities</strong><br>Additional locations, SMS campaigns, social media management, advanced reporting — when you're ready.</div>
+</div></div>
+
+<div class="br"><button class="btn bs" onclick="go(2)">← Back</button><button class="btn bp" onclick="go(4)">Continue to Support →</button></div>
+</div>
+
+<!-- STEP 4: SUPPORT -->
+<div class="stp" id="s4">
+<div class="shdr fu"><div class="tag" style="background:var(--cyan-bg);color:var(--cyan)">Step 5 of 5</div><h2>You're Never Alone — Support & Contact</h2><p>We're here for you every step of the way. Here's how to reach us and submit requests.</p></div>
+
+<div class="sopts fu fd1">
+<div class="sc"><div class="si">📞</div><h4>Call Us</h4><p>Speak with your account manager directly</p><a href="tel:+13144611799">+1 (314) 461-1799</a></div>
+<div class="sc"><div class="si">✉️</div><h4>Email</h4><p>For non-urgent questions and requests</p><a href="mailto:support@epicbizintel.com">support@epicbizintel.com</a></div>
+<div class="sc"><div class="si">💬</div><h4>Chat</h4><p>Live chat on our website during business hours</p><a href="https://epicbizintel.com" target="_blank">epicbizintel.com</a></div>
+<div class="sc"><div class="si">📱</div><h4>Text</h4><p>Quick questions via SMS</p><a href="sms:+13144611799">(314) 461-1799</a></div>
+</div>
+
+<div class="oc fu fd2"><h3>🎫 Submit a Support Request</h3><p style="margin-bottom:.6rem">Need something changed, fixed, or added? Fill this out and we'll get on it.</p>
+<div class="fg">
+<div class="fgi"><label>Your Name</label><input placeholder="John Smith"></div>
+<div class="fgi"><label>Business Name</label><input placeholder="Smith's Plumbing LLC"></div>
+<div class="fgi"><label>Request Type</label><select><option>AI agent issue — wrong response</option><option>Change business hours / info</option><option>Add new service / update pricing</option><option>Phone or number issue</option><option>Billing question</option><option>Feature request</option><option>General question</option><option>Other</option></select></div>
+<div class="fgi"><label>Urgency</label><select><option>Normal — within 24 hours</option><option>High — today please</option><option>Critical — system is down</option></select></div>
+<div class="fgi ff"><label>Describe your request</label><textarea placeholder="Tell us exactly what's happening, what you'd like changed, or what you need. The more detail, the faster we can help."></textarea></div>
+</div>
+<div class="br" style="justify-content:flex-start"><button class="btn bp">Submit Request →</button></div>
+</div>
+
+<div class="oc fu fd3"><h3>📖 Quick Reference</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.5rem;font-size:.8rem">
+<div style="padding:.6rem;background:var(--bg2);border-radius:8px"><strong>Response Times</strong><br>Normal: 24hrs · High: 4hrs · Critical: 1hr</div>
+<div style="padding:.6rem;background:var(--bg2);border-radius:8px"><strong>Business Hours</strong><br>Mon–Fri 8am–6pm CT</div>
+<div style="padding:.6rem;background:var(--bg2);border-radius:8px"><strong>Your Account Manager</strong><br>Assigned at go-live</div>
+<div style="padding:.6rem;background:var(--bg2);border-radius:8px"><strong>Monthly Review</strong><br>Scheduled after first 30 days</div>
+</div></div>
+
+<!-- SUCCESS STATE -->
+<div class="suc fu fd4">
+<div class="be">🎉</div>
+<h2>You're All Set!</h2>
+<p>We have everything we need. Your EPIC team is already building your system. Expect a call from your account manager within 24 hours to confirm next steps.</p>
+<div class="br" style="justify-content:center;margin-top:1rem"><button class="btn bg" style="font-size:.9rem;padding:.75rem 2rem">🏠 Back to Top</button></div>
+</div>
+
+</div>
+
+</div><!-- /wrap -->
+
+<div class="foot">© 2026 EPIC Business Intelligence LLC · Fenton, MO · <a href="https://epicbizintel.com" style="color:var(--dim)">epicbizintel.com</a></div>
+
+<script>
+let cur=0;
+const total=5;
+const widths=['0%','20%','43%','65%','87%'];
+
+function go(n){
+  cur=n;
+  document.querySelectorAll('.stp').forEach(s=>s.classList.remove('vis'));
+  document.getElementById('s'+n).classList.add('vis');
+  document.querySelectorAll('.ps').forEach((p,i)=>{
+    p.classList.remove('on','ok');
+    if(i<n)p.classList.add('ok');
+    if(i===n)p.classList.add('on');
+  });
+  document.getElementById('barFill').style.width=widths[n]||'0%';
+  window.scrollTo({top:0,behavior:'smooth'});
+  // Re-trigger animations
+  document.getElementById('s'+n).querySelectorAll('.fu').forEach(el=>{
+    el.style.animation='none';
+    el.offsetHeight;
+    el.style.animation='';
+  });
+}
+</script>
+</body>
+</html>
