@@ -1,0 +1,738 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPIC Business Intelligence — Client Pipeline & Workflow Map</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --epic-navy: #0B1120;
+  --epic-dark: #111827;
+  --epic-card: #1A2236;
+  --epic-accent: #3B82F6;
+  --epic-accent-light: #60A5FA;
+  --epic-green: #10B981;
+  --epic-amber: #F59E0B;
+  --epic-red: #EF4444;
+  --epic-purple: #8B5CF6;
+  --epic-cyan: #06B6D4;
+  --epic-white: #F8FAFC;
+  --epic-gray: #94A3B8;
+  --epic-border: #1E293B;
+  --epic-glow: rgba(59, 130, 246, 0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--epic-navy);
+  color: var(--epic-white);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, var(--epic-navy) 0%, #0F1A2E 50%, var(--epic-dark) 100%);
+  border-bottom: 1px solid var(--epic-border);
+  padding: 2rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--epic-glow) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.brand-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--epic-accent), var(--epic-purple));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -1px;
+}
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.brand-sub {
+  color: var(--epic-accent-light);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #fff 0%, var(--epic-accent-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.header-meta {
+  display: flex;
+  gap: 2rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--epic-gray);
+}
+.header-meta span { display: flex; align-items: center; gap: 0.4rem; }
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.badge-high { background: rgba(239, 68, 68, 0.15); color: #FCA5A5; border: 1px solid rgba(239, 68, 68, 0.3); }
+.badge-status { background: rgba(245, 158, 11, 0.15); color: #FCD34D; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem 3rem 4rem; }
+
+/* SECTION */
+.section { margin-bottom: 3rem; }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--epic-border);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--epic-accent), var(--epic-purple));
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* PIPELINE */
+.pipeline {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  padding: 1rem 0;
+  position: relative;
+}
+.pipeline-stage {
+  flex: 1;
+  min-width: 180px;
+  position: relative;
+  text-align: center;
+}
+.stage-connector {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--epic-accent), var(--epic-purple));
+  z-index: 0;
+}
+.pipeline-stage:last-child .stage-connector { display: none; }
+.stage-dot {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin: 0 auto 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  position: relative;
+  z-index: 1;
+  border: 3px solid;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.stage-dot:hover { transform: scale(1.15); }
+.stage-dot.blue { background: rgba(59, 130, 246, 0.15); border-color: var(--epic-accent); box-shadow: 0 0 20px rgba(59,130,246,0.2); }
+.stage-dot.purple { background: rgba(139, 92, 246, 0.15); border-color: var(--epic-purple); box-shadow: 0 0 20px rgba(139,92,246,0.2); }
+.stage-dot.green { background: rgba(16, 185, 129, 0.15); border-color: var(--epic-green); box-shadow: 0 0 20px rgba(16,185,129,0.2); }
+.stage-dot.amber { background: rgba(245, 158, 11, 0.15); border-color: var(--epic-amber); box-shadow: 0 0 20px rgba(245,158,11,0.2); }
+.stage-dot.cyan { background: rgba(6, 182, 212, 0.15); border-color: var(--epic-cyan); box-shadow: 0 0 20px rgba(6,182,212,0.2); }
+.stage-label {
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+.stage-desc { font-size: 0.75rem; color: var(--epic-gray); padding: 0 0.5rem; }
+
+/* CARDS */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
+.card {
+  background: var(--epic-card);
+  border: 1px solid var(--epic-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.card:hover { border-color: var(--epic-accent); box-shadow: 0 0 30px var(--epic-glow); }
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+.card.accent-blue::before { background: linear-gradient(90deg, var(--epic-accent), var(--epic-cyan)); }
+.card.accent-green::before { background: linear-gradient(90deg, var(--epic-green), var(--epic-cyan)); }
+.card.accent-purple::before { background: linear-gradient(90deg, var(--epic-purple), var(--epic-accent)); }
+.card.accent-amber::before { background: linear-gradient(90deg, var(--epic-amber), var(--epic-red)); }
+.card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+.card p { font-size: 0.88rem; color: var(--epic-gray); margin-bottom: 0.5rem; }
+.card ul { list-style: none; padding: 0; }
+.card li {
+  font-size: 0.85rem;
+  color: #CBD5E1;
+  padding: 0.4rem 0;
+  padding-left: 1.25rem;
+  position: relative;
+  border-bottom: 1px solid rgba(30,41,59,0.5);
+}
+.card li:last-child { border-bottom: none; }
+.card li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--epic-accent-light);
+  font-weight: 600;
+}
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--epic-accent);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+}
+
+/* CHECKLIST */
+.checklist { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--epic-card);
+  border: 1px solid var(--epic-border);
+  border-radius: 12px;
+  font-size: 0.88rem;
+  transition: border-color 0.2s;
+}
+.check-item:hover { border-color: var(--epic-green); }
+.check-box {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--epic-green);
+  border-radius: 6px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+/* TABLE */
+.table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--epic-border); }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+th {
+  background: var(--epic-card);
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--epic-gray);
+  border-bottom: 2px solid var(--epic-border);
+}
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--epic-border);
+  color: #CBD5E1;
+}
+tr:hover td { background: rgba(59, 130, 246, 0.05); }
+
+/* SWIMLANE */
+.swimlane { margin: 1.5rem 0; }
+.swimlane-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  align-items: center;
+}
+.swimlane-label {
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  text-align: center;
+}
+.swimlane-label.leon { background: rgba(59,130,246,0.15); color: var(--epic-accent-light); border: 1px solid rgba(59,130,246,0.3); }
+.swimlane-label.shane { background: rgba(139,92,246,0.15); color: #C4B5FD; border: 1px solid rgba(139,92,246,0.3); }
+.swimlane-label.ai { background: rgba(6,182,212,0.15); color: #67E8F9; border: 1px solid rgba(6,182,212,0.3); }
+.swimlane-label.client { background: rgba(16,185,129,0.15); color: #6EE7B7; border: 1px solid rgba(16,185,129,0.3); }
+.swimlane-tasks {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.swimlane-task {
+  padding: 0.4rem 0.75rem;
+  background: var(--epic-card);
+  border: 1px solid var(--epic-border);
+  border-radius: 8px;
+  font-size: 0.78rem;
+  color: #CBD5E1;
+  white-space: nowrap;
+}
+
+/* CONTACT */
+.contact-bar {
+  background: var(--epic-card);
+  border: 1px solid var(--epic-border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.contact-bar .info { font-size: 0.88rem; color: var(--epic-gray); }
+.contact-bar .info strong { color: var(--epic-white); }
+.contact-bar a {
+  color: var(--epic-accent-light);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--epic-border);
+  font-size: 0.8rem;
+  color: var(--epic-gray);
+}
+
+@media (max-width: 768px) {
+  .header { padding: 1.5rem; }
+  .main { padding: 1.5rem; }
+  .header h1 { font-size: 1.6rem; }
+  .pipeline { flex-direction: column; align-items: center; }
+  .stage-connector { display: none; }
+  .swimlane-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="brand-row">
+      <div class="brand-icon">E</div>
+      <div>
+        <div class="brand-name">EPIC Business Intelligence</div>
+        <div class="brand-sub">Automation · AI Agents · Revenue Infrastructure</div>
+      </div>
+    </div>
+    <h1>Client Pipeline & Workflow Map</h1>
+    <div class="header-meta">
+      <span><strong>Task ID:</strong>&nbsp; EP-002</span>
+      <span><strong>Owner:</strong>&nbsp; Shane Christian</span>
+      <span class="badge badge-high">High Priority</span>
+      <span class="badge badge-status">Ready for Review</span>
+    </div>
+    <p style="margin-top:1rem; color: var(--epic-gray); font-size:0.9rem; max-width:800px;">
+      Complete end-to-end client workflow — from first contact through go-live — ensuring EPIC is ready to onboard a new client <em>today</em>. Covers marketing, sales, onboarding, deployment, and ongoing account management.
+    </p>
+  </div>
+</header>
+
+<main class="main">
+
+<!-- SECTION 1: PIPELINE OVERVIEW -->
+<section class="section">
+  <h2 class="section-title"><span class="section-num">1</span> Client Lifecycle Pipeline</h2>
+  <div class="pipeline">
+    <div class="pipeline-stage">
+      <div class="stage-connector"></div>
+      <div class="stage-dot blue">🎯</div>
+      <div class="stage-label">Prospecting</div>
+      <div class="stage-desc">Lead gen, scraping, outreach campaigns</div>
+    </div>
+    <div class="pipeline-stage">
+      <div class="stage-connector"></div>
+      <div class="stage-dot purple">📞</div>
+      <div class="stage-label">Engagement</div>
+      <div class="stage-desc">AI voice, callback, demo request</div>
+    </div>
+    <div class="pipeline-stage">
+      <div class="stage-connector"></div>
+      <div class="stage-dot amber">🤝</div>
+      <div class="stage-label">Discovery</div>
+      <div class="stage-desc">Free audit, needs assessment, pricing</div>
+    </div>
+    <div class="pipeline-stage">
+      <div class="stage-connector"></div>
+      <div class="stage-dot green">✍️</div>
+      <div class="stage-label">Close</div>
+      <div class="stage-desc">MSA signed, payment, sub-account</div>
+    </div>
+    <div class="pipeline-stage">
+      <div class="stage-connector"></div>
+      <div class="stage-dot cyan">🚀</div>
+      <div class="stage-label">Onboarding</div>
+      <div class="stage-desc">Setup, KB, voice agent, go-live</div>
+    </div>
+    <div class="pipeline-stage">
+      <div class="stage-dot blue">📊</div>
+      <div class="stage-label">Managed</div>
+      <div class="stage-desc">Reporting, optimization, upsell</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: DETAILED STAGES -->
+<section class="section">
+  <h2 class="section-title"><span class="section-num">2</span> Stage-by-Stage Workflow</h2>
+  <div class="card-grid">
+
+    <!-- STAGE 1 -->
+    <div class="card accent-blue">
+      <h3>🎯 Stage 1: Prospecting & Lead Generation</h3>
+      <p><strong>Goal:</strong> Fill the top of funnel with qualified SMB leads</p>
+      <ul>
+        <li>Scrape leads by niche (plumbers, HVAC, roofers, lawyers) via Appify</li>
+        <li>Clean, deduplicate, and enrich contact data in Google Sheets</li>
+        <li>Import validated leads into GoHighLevel CRM</li>
+        <li>Tag leads by niche, geography, and source</li>
+        <li>Launch voicemail drop campaigns (200/day via GHL + Twilio)</li>
+        <li>Run LinkedIn outreach via Make.com scenarios</li>
+        <li>Post to social media (LinkedIn, Facebook, Instagram)</li>
+        <li>A/B test outreach scripts weekly — rotate and measure</li>
+      </ul>
+      <p style="margin-top:0.75rem;"><strong>Tools:</strong> Appify, Google Sheets, GoHighLevel, Make.com, 11 Labs, Twilio, truereach.rep</p>
+      <p><strong>Owner:</strong> Leon (lead gen) · Shane (GHL campaigns)</p>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="card accent-purple">
+      <h3>📞 Stage 2: Engagement & Qualification</h3>
+      <p><strong>Goal:</strong> Convert callbacks and inquiries into booked demos</p>
+      <ul>
+        <li>AI agent (Alexis) answers inbound calls — greeting: simple "Hello"</li>
+        <li>Alexis qualifies: business type, pain points, timeline, budget</li>
+        <li>If callback from voicemail → acknowledge the VM drop first</li>
+        <li>Route to booking flow: capture name, email, phone, business name</li>
+        <li>Book free automation audit / discovery call on calendar</li>
+        <li>Auto-send confirmation email + SMS with calendar link</li>
+        <li>Tag lead as "Demo Booked" in GHL pipeline</li>
+        <li>All calls recorded automatically for training + quality review</li>
+      </ul>
+      <p style="margin-top:0.75rem;"><strong>Tools:</strong> GoHighLevel (AI agent), 11 Labs (Zoe voice), Google Calendar</p>
+      <p><strong>Owner:</strong> AI Agent (Alexis) · Shane (prompt tuning)</p>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="card accent-amber">
+      <h3>🤝 Stage 3: Discovery & Proposal</h3>
+      <p><strong>Goal:</strong> Understand the client's workflow and present a tailored solution</p>
+      <ul>
+        <li>Conduct 15-minute discovery call (Leon or Shane)</li>
+        <li>Use qualifying questions from GHL Knowledge Base (Article 2.2)</li>
+        <li>Identify automation opportunities: calls, scheduling, follow-up, billing</li>
+        <li>Determine average ticket value → calculate pricing via pricing calculator</li>
+        <li>Present service tier: Basic / Professional / Enterprise</li>
+        <li>Share relevant case studies or demo of AI voice agent</li>
+        <li>Handle objections using EPIC objection playbook</li>
+        <li>If interested → send MSA contract + Schedule A for review</li>
+      </ul>
+      <p style="margin-top:0.75rem;"><strong>Tools:</strong> Zoom/Meet, Pricing Calculator (to build), MSA template (Google Docs)</p>
+      <p><strong>Owner:</strong> Leon (sales lead) · Shane (technical demo)</p>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="card accent-green">
+      <h3>✍️ Stage 4: Close & Contract</h3>
+      <p><strong>Goal:</strong> Signed contract + payment + GHL sub-account created</p>
+      <ul>
+        <li>Client reviews and signs MSA + Schedule A + DPA</li>
+        <li>Collect first payment via Stripe (monthly subscription)</li>
+        <li>Create dedicated GHL sub-account for client</li>
+        <li>Apply EPIC branding snapshot to sub-account (not True Farm Welfare)</li>
+        <li>Set up client's phone number + A2P registration</li>
+        <li>Tag in CRM: "Client — Active" + assign account manager</li>
+        <li>Send welcome email with onboarding timeline</li>
+        <li>Trigger onboarding workflow in GHL</li>
+      </ul>
+      <p style="margin-top:0.75rem;"><strong>Tools:</strong> Google Docs (contract), Stripe (billing), GoHighLevel (sub-account + snapshot)</p>
+      <p><strong>Owner:</strong> Leon (contract) · Shane (GHL setup + snapshot)</p>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="card accent-blue">
+      <h3>🚀 Stage 5: Onboarding & Deployment</h3>
+      <p><strong>Goal:</strong> Fully configured AI voice agent + chatbot + automations live for client</p>
+      <ul>
+        <li>Kickoff call: confirm scope, services, CRM access, business hours</li>
+        <li>Collect client's top 10 FAQs, service descriptions, pricing ranges</li>
+        <li>Build custom Knowledge Base from EPIC template (per niche addendum)</li>
+        <li>Configure AI voice agent: greeting, intent routing, booking flow</li>
+        <li>Configure website chatbot with same KB</li>
+        <li>Set up automation workflows: missed-call text-back, follow-ups, nurture</li>
+        <li>Integrate with client's existing CRM (ServiceTitan, Jobber, etc.) if applicable</li>
+        <li>Internal QA: test all call flows, chat flows, booking, edge cases</li>
+        <li>Client preview + approval of scripts before go-live</li>
+        <li>Go-live: flip number, activate automations, monitor first 48 hours</li>
+      </ul>
+      <p style="margin-top:0.75rem;"><strong>Tools:</strong> GoHighLevel, 11 Labs, Twilio, client CRM</p>
+      <p><strong>Owner:</strong> Shane (GHL build) · Leon (KB + QA)</p>
+      <p><strong>Timeline:</strong> 3–5 business days from contract signed to go-live</p>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div class="card accent-purple">
+      <h3>📊 Stage 6: Managed Service & Growth</h3>
+      <p><strong>Goal:</strong> Retain client, demonstrate ROI, and expand scope</p>
+      <ul>
+        <li>Weekly campaign analytics report (contacts reached, calls booked, conversion rate)</li>
+        <li>Monthly performance review call with client</li>
+        <li>Quarterly optimization: refine prompts, update KB, tune workflows</li>
+        <li>Monitor AI call quality — flag and fix issues within 24 hours</li>
+        <li>Upsell opportunities: additional locations, advanced reporting, more automations</li>
+        <li>Handle renewal, rate adjustments (30-day notice per MSA)</li>
+        <li>Collect testimonials and case study data for marketing</li>
+      </ul>
+      <p style="margin-top:0.75rem;"><strong>Tools:</strong> GoHighLevel (reporting), Google Sheets, Stripe (billing)</p>
+      <p><strong>Owner:</strong> Leon (account management) · Shane (technical optimization)</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 3: OWNERSHIP SWIMLANE -->
+<section class="section">
+  <h2 class="section-title"><span class="section-num">3</span> Ownership Map — Who Does What</h2>
+  <div class="swimlane">
+    <div class="swimlane-row">
+      <div class="swimlane-label leon">Leon</div>
+      <div class="swimlane-tasks">
+        <span class="swimlane-task">Lead scraping</span>
+        <span class="swimlane-task">Social media posts</span>
+        <span class="swimlane-task">Discovery calls</span>
+        <span class="swimlane-task">Pricing / proposals</span>
+        <span class="swimlane-task">Contract signing</span>
+        <span class="swimlane-task">KB creation</span>
+        <span class="swimlane-task">QA testing</span>
+        <span class="swimlane-task">Account management</span>
+        <span class="swimlane-task">Billing (Stripe)</span>
+      </div>
+    </div>
+    <div class="swimlane-row">
+      <div class="swimlane-label shane">Shane</div>
+      <div class="swimlane-tasks">
+        <span class="swimlane-task">GHL campaigns</span>
+        <span class="swimlane-task">Voicemail drops</span>
+        <span class="swimlane-task">AI agent prompts</span>
+        <span class="swimlane-task">Sub-account setup</span>
+        <span class="swimlane-task">Snapshot deployment</span>
+        <span class="swimlane-task">Workflow automation</span>
+        <span class="swimlane-task">CRM integration</span>
+        <span class="swimlane-task">Technical demo</span>
+        <span class="swimlane-task">Prompt optimization</span>
+      </div>
+    </div>
+    <div class="swimlane-row">
+      <div class="swimlane-label ai">AI Agents</div>
+      <div class="swimlane-tasks">
+        <span class="swimlane-task">Inbound call answering</span>
+        <span class="swimlane-task">Lead qualification</span>
+        <span class="swimlane-task">Appointment booking</span>
+        <span class="swimlane-task">Missed-call text-back</span>
+        <span class="swimlane-task">Chat support (website)</span>
+        <span class="swimlane-task">Follow-up sequences</span>
+      </div>
+    </div>
+    <div class="swimlane-row">
+      <div class="swimlane-label client">Client</div>
+      <div class="swimlane-tasks">
+        <span class="swimlane-task">Provide business info</span>
+        <span class="swimlane-task">Sign contract</span>
+        <span class="swimlane-task">CRM access</span>
+        <span class="swimlane-task">Approve scripts</span>
+        <span class="swimlane-task">Handle fulfillment</span>
+        <span class="swimlane-task">Monthly payment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: GO-LIVE CHECKLIST -->
+<section class="section">
+  <h2 class="section-title"><span class="section-num">4</span> Go-Live Readiness Checklist</h2>
+  <p style="color: var(--epic-gray); margin-bottom:1rem; font-size:0.9rem;">Every item must be complete before activating a client's AI agents.</p>
+  <div class="checklist">
+    <div class="check-item"><div class="check-box">☐</div><div>MSA + Schedule A + DPA signed by client</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>First payment collected via Stripe</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>GHL sub-account created with EPIC branding (not True Farm)</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>Client phone number ported or new number assigned</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>A2P registration submitted + approved for texting</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>Custom Knowledge Base built (voice + chat)</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>AI voice agent configured: greeting, routing, booking</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>Website chatbot deployed on client's site</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>Missed-call text-back automation active</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>Follow-up / nurture workflows built and tested</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>CRM integration tested (if applicable)</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>Internal QA: 5+ test calls covering all intents</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>Client has reviewed and approved all AI scripts</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>Welcome email sent with support contact info</div></div>
+    <div class="check-item"><div class="check-box">☐</div><div>First 48-hour monitoring plan in place</div></div>
+  </div>
+</section>
+
+<!-- SECTION 5: PRICING TIERS -->
+<section class="section">
+  <h2 class="section-title"><span class="section-num">5</span> Service Tiers & Pricing Framework</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Package</th>
+          <th>Includes</th>
+          <th>Target Client</th>
+          <th>Price Range</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="color:var(--epic-accent-light);font-weight:700;">Basic</span></td>
+          <td>AI Call Answering</td>
+          <td>Voice agent, basic booking, missed-call text-back, 1 CRM integration</td>
+          <td>Solo operators, small shops</td>
+          <td style="color:var(--epic-green);font-weight:600;">$___/mo</td>
+        </tr>
+        <tr>
+          <td><span style="color:var(--epic-purple);font-weight:700;">Professional</span></td>
+          <td>Voice + Chat Automation</td>
+          <td>Voice agent + chatbot + SMS + booking/rescheduling + estimate follow-up + 2 CRM integrations</td>
+          <td>Growing businesses, 2-10 employees</td>
+          <td style="color:var(--epic-green);font-weight:600;">$___/mo</td>
+        </tr>
+        <tr>
+          <td><span style="color:var(--epic-amber);font-weight:700;">Enterprise</span></td>
+          <td>Full Automation Suite</td>
+          <td>All above + multi-CRM + nurture campaigns + custom workflows + advanced routing + quarterly review</td>
+          <td>Multi-location, franchises</td>
+          <td style="color:var(--epic-green);font-weight:600;">$___/mo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="color:var(--epic-gray); font-size:0.8rem; margin-top:0.75rem;">* Pricing determined during discovery based on client's average ticket value and scope. See pricing calculator (EP-013).</p>
+</section>
+
+<!-- SECTION 6: TOOLS -->
+<section class="section">
+  <h2 class="section-title"><span class="section-num">6</span> Technology Stack</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Function</th><th>Tool</th><th>Role in Pipeline</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>CRM & Automation</td><td>GoHighLevel (Agency)</td><td>Central platform: contacts, pipelines, workflows, sub-accounts, AI agents</td></tr>
+        <tr><td>Voice AI</td><td>11 Labs (Zoe voice)</td><td>Natural voice for AI phone agent + voicemail recordings</td></tr>
+        <tr><td>Telephony</td><td>Twilio (via GHL)</td><td>Call routing, voicemail drops, SMS</td></tr>
+        <tr><td>Workflow Automation</td><td>Make.com</td><td>LinkedIn outreach scenarios, cross-platform triggers</td></tr>
+        <tr><td>LinkedIn Outreach</td><td>truereach.rep</td><td>Connection management, message sequencing</td></tr>
+        <tr><td>Lead Scraping</td><td>Appify</td><td>Scrape SMB leads by niche and geography</td></tr>
+        <tr><td>Payments</td><td>Stripe</td><td>Client billing, subscription management</td></tr>
+        <tr><td>Contracts</td><td>Google Docs</td><td>MSA, Schedule A, DPA — pending e-sign tool</td></tr>
+        <tr><td>Content</td><td>ChatGPT + Claude</td><td>Script generation, KB content, marketing copy</td></tr>
+        <tr><td>Reporting</td><td>GHL + Google Sheets</td><td>Campaign analytics, client reports</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-bar">
+  <div class="info">
+    <strong>EPIC Business Intelligence LLC</strong> · Fenton, MO<br>
+    📞 <a href="tel:+13144611799">+1 (314) 461-1799</a> · ✉️ <a href="mailto:info@epicbizintel.com">info@epicbizintel.com</a> · 🌐 <a href="https://epicbizintel.com" target="_blank">epicbizintel.com</a>
+  </div>
+  <div style="font-size:0.8rem; color:var(--epic-gray);">
+    Document: EP-002 · Version 1.0 · February 21, 2026
+  </div>
+</div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 EPIC Business Intelligence LLC. Confidential — for internal use only.</p>
+</footer>
+
+</body>
+</html>
